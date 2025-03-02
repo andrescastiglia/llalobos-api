@@ -1,0 +1,47 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n            SELECT transaction_date, source_id, payer_name, transaction_amount, transaction_type\n            FROM transactions\n            ORDER BY transaction_date DESC\n            LIMIT $1\n            OFFSET $2\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "transaction_date",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 1,
+        "name": "source_id",
+        "type_info": "Bpchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "payer_name",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 3,
+        "name": "transaction_amount",
+        "type_info": "Numeric"
+      },
+      {
+        "ordinal": 4,
+        "name": "transaction_type",
+        "type_info": "Varchar"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Int8",
+        "Int8"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "b55dbcca3bb9f622a14ba004d84cf558bb599ace0dac8977301fb2ef78458180"
+}

@@ -1,0 +1,22 @@
+{
+  "name": "LLALOBOS-BACKEND",
+  "image": "mcr.microsoft.com/vscode/devcontainers/rust",
+  "runArgs": [
+    "--add-host=host.docker.internal:host-gateway"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "rust-lang.rust-analyzer",
+        "mechatroner.rainbow-csv",
+        "ckolkman.vscode-postgres",
+        "fill-labs.dependi",
+        "GitHub.vscode-github-actions"
+      ]
+    }
+  },
+  "postCreateCommand": [
+    "/bin/bash -c 'cargo install sqlx-cli'",
+    "/bin/bash -c 'source .env'"
+  ]
+}
