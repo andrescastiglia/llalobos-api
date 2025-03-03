@@ -15,8 +15,6 @@
       ]
     }
   },
-  "postCreateCommand": [
-    "/bin/bash -c 'cargo install sqlx-cli'",
-    "/bin/bash -c 'source .env'"
-  ]
+  "postCreateCommand": "/bin/bash -c '/usr/local/cargo/bin/cargo install sqlx-cli'",
+  "postStartCommand": "/bin/bash -c 'source /workspaces/backend/.env'"
 }

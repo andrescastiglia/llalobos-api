@@ -1,0 +1,26 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n            SELECT sum(transaction_amount) as balance, sum(transaction_amount) as target\n            FROM transactions\n        ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "balance",
+        "type_info": "Numeric"
+      },
+      {
+        "ordinal": 1,
+        "name": "target",
+        "type_info": "Numeric"
+      }
+    ],
+    "parameters": {
+      "Left": []
+    },
+    "nullable": [
+      null,
+      null
+    ]
+  },
+  "hash": "0e4bcebef94c553b2d6c938990af242fc98625b7e11c6f85f1503bb73f8a0066"
+}

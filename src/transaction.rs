@@ -8,9 +8,9 @@ use sqlx::PgPool;
 pub struct Transaction {
     pub transaction_date: DateTime<Utc>,
     pub source_id: String,
-    pub payer_name: String,
+    pub payer_name: Option<String>,
     pub transaction_amount: Decimal,
-    pub transaction_type: String,
+    pub transaction_type: Option<String>,
 }
 
 #[derive(Deserialize)]
@@ -41,7 +41,7 @@ async fn fetch(pool: &PgPool, page: u32, page_size: u32) -> Result<Vec<Transacti
     let transactions = sqlx::query_as!(
         Transaction,
         r#"
-            SELECT transaction_date, source_id, payer_name, transaction_amount, transaction_type
+            SELECT transaction_date, source_id, trim(payer_name) as payer_name, transaction_amount, trim(transaction_type) as transaction_type
             FROM transactions
             ORDER BY transaction_date DESC
             LIMIT $1

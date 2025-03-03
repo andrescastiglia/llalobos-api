@@ -1,3 +1,4 @@
+mod goal;
 mod params;
 mod shutdown;
 mod transaction;
@@ -22,6 +23,7 @@ async fn main() {
 
     let app = Router::new()
         .route("/transactions", get(transaction::handler))
+        .route("/goal", get(goal::handler))
         .layer(Extension(pool));
 
     let listener = tokio::net::TcpListener::bind(config.listener())
