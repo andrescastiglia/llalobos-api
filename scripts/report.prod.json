@@ -1,0 +1,41 @@
+{
+    "file_name_prefix": "prod",
+    "show_fee_prevision": false,
+    "show_chargeback_cancel": true,
+    "include_withdraw": true,
+    "coupon_detailed": true,
+    "shipping_detail": true,
+    "refund_detailed": true,
+    "display_timezone": "GMT-03",
+    "notification_email_list": [
+        "notificacion@mail.com"
+    ],
+    "sftp_info": {
+        "server": "127.0.0.1",
+        "password": "password",
+        "remote_dir": "/files",
+        "port": 22,
+        "username": "user"
+    },
+    "frequency": {
+        "hour": 0,
+        "type": "daily"
+    },
+    "columns": [
+        {
+            "key": "TRANSACTION_DATE"
+        },
+        {
+            "key": "SOURCE_ID"
+        },
+        {
+            "key": "PAYER_NAME"
+        },
+        {
+            "key": "TRANSACTION_AMOUNT"
+        },
+        {
+            "key": "TRANSACTION_TYPE"
+        }
+    ]
+}
