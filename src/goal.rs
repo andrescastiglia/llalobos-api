@@ -10,15 +10,9 @@ pub struct Goal {
 }
 
 async fn fetch(pool: &PgPool) -> Result<Goal, sqlx::Error> {
-    let goal = sqlx::query_as!(
-        Goal,
-        r#"
-            SELECT sum(transaction_amount) as balance, sum(transaction_amount) as target
-            FROM transactions
-        "#,
-    )
-    .fetch_one(pool)
-    .await?;
+    let goal = sqlx::query_as!(Goal, "SELECT balance, target FROM goal")
+        .fetch_one(pool)
+        .await?;
 
     Ok(goal)
 }

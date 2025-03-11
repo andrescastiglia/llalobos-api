@@ -1,4 +1,7 @@
-use axum::{extract::{Query, Extension}, response::Json};
+use axum::{
+    extract::{Extension, Query},
+    response::Json,
+};
 use chrono::{DateTime, Utc};
 use rust_decimal::Decimal;
 use serde::{Deserialize, Serialize};
@@ -6,10 +9,10 @@ use sqlx::PgPool;
 
 #[derive(Serialize, Deserialize)]
 pub struct Transaction {
-    pub transaction_date: DateTime<Utc>,
+    pub transaction_date: Option<DateTime<Utc>>,
     pub source_id: String,
     pub payer_name: Option<String>,
-    pub transaction_amount: Decimal,
+    pub transaction_amount: Option<Decimal>,
     pub transaction_type: Option<String>,
 }
 

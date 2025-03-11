@@ -11,7 +11,7 @@
       {
         "ordinal": 1,
         "name": "source_id",
-        "type_info": "Bpchar"
+        "type_info": "Varchar"
       },
       {
         "ordinal": 2,
@@ -36,10 +36,10 @@
       ]
     },
     "nullable": [
-      false,
+      true,
       false,
       null,
-      false,
+      true,
       null
     ]
   },

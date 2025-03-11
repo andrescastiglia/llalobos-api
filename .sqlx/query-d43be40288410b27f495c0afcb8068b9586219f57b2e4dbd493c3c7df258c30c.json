@@ -1,6 +1,6 @@
 {
   "db_name": "PostgreSQL",
-  "query": "\n            SELECT sum(transaction_amount) as balance, sum(transaction_amount) as target\n            FROM transactions\n        ",
+  "query": "SELECT balance, target FROM goal",
   "describe": {
     "columns": [
       {
@@ -18,9 +18,9 @@
       "Left": []
     },
     "nullable": [
-      null,
-      null
+      true,
+      true
     ]
   },
-  "hash": "0e4bcebef94c553b2d6c938990af242fc98625b7e11c6f85f1503bb73f8a0066"
+  "hash": "d43be40288410b27f495c0afcb8068b9586219f57b2e4dbd493c3c7df258c30c"
 }
