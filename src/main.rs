@@ -1,5 +1,7 @@
 mod funds;
 mod goal;
+mod news;
+mod pagination;
 mod params;
 mod shutdown;
 mod transaction;
@@ -26,6 +28,7 @@ async fn main() {
         .route("/transactions", get(transaction::handler))
         .route("/goal", get(goal::handler))
         .route("/funds", get(funds::handler))
+        .route("/news", get(news::handler))
         .layer(Extension(pool));
 
     let listener = tokio::net::TcpListener::bind(config.listener())

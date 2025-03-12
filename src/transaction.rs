@@ -1,3 +1,4 @@
+use crate::pagination::{PaginatedResponse, Pagination};
 use axum::{
     extract::{Extension, Query},
     response::Json,
@@ -14,20 +15,6 @@ pub struct Transaction {
     pub payer_name: Option<String>,
     pub transaction_amount: Option<Decimal>,
     pub transaction_type: Option<String>,
-}
-
-#[derive(Deserialize)]
-pub struct Pagination {
-    page: Option<u32>,
-    page_size: Option<u32>,
-}
-
-#[derive(Serialize)]
-pub struct PaginatedResponse<T> {
-    data: T,
-    page: u32,
-    page_size: u32,
-    total: u32,
 }
 
 async fn count(pool: &PgPool) -> Result<i64, sqlx::Error> {

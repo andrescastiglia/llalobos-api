@@ -30,8 +30,11 @@ DATABASE_URL="${POSTGRES_URL}" cargo sqlx prepare --check -- --bin llalobos-api
 
 ### Test
 ```
+curl 'http://localhost:4000/news?page=1&page_size=3'
+curl 'http://localhost:4000/news?id=1
 curl 'http://localhost:4000/transactions?page=1&page_size=3'
 curl 'http://localhost:4000/goal
+curl 'http://localhost:4000/funds
 ```
 
 ### Scripts

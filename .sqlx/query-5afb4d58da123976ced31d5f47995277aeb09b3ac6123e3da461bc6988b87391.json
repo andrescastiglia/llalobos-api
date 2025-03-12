@@ -36,10 +36,10 @@
       ]
     },
     "nullable": [
-      true,
+      false,
       false,
       null,
-      true,
+      false,
       null
     ]
   },
