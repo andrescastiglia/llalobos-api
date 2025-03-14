@@ -48,6 +48,7 @@ $$ LANGUAGE plpgsql;
 CREATE OR REPLACE VIEW test.funds AS
     SELECT trim(payer_name) as payer_name, sum(transaction_amount * direction(trim(transaction_type))) as amount
     FROM test.transactions
+    WHERE direction(trim(transaction_type)) > 0 AND transaction_amount > 0
     GROUP BY trim(payer_name)
     ORDER BY amount DESC;
 
