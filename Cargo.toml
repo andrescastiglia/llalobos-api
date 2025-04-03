@@ -11,5 +11,5 @@ dotenvy = { version = "~0.15", features = [] }
 rust_decimal = { version="1.36.0", features = ["db-tokio-postgres"] }
 serde = { version = "~1.0", features = ["derive"] }
 sqlx = { version = "~0.8", features = ["postgres", "runtime-tokio", "macros", "chrono", "rust_decimal" ] }
-tokio = { version = "~1.43", features = ["macros", "rt-multi-thread", "signal"] }
+tokio = { version = "~1.44", features = ["macros", "rt-multi-thread", "signal"] }
 tracing-subscriber = { version = "~0.3", features = ["env-filter"] }

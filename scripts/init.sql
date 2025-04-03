@@ -34,7 +34,8 @@ BEGIN
        , 'CHARGEBACK'
        , 'DISPUTE'
        , 'WITHDRAWAL'
-       , 'PAYOUT' THEN
+       , 'PAYOUT'
+       , 'PAYOUTS' THEN
       RETURN -1; -- Pago
     WHEN 'WITHDRAWAL_CANCEL' THEN
       RETURN 1; -- Un retiro cancelado vuelve a tener el dinero disponible
@@ -46,14 +47,14 @@ END;
 $$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE VIEW test.funds AS
-    SELECT trim(payer_name) as payer_name, sum(transaction_amount * direction(trim(transaction_type))) as amount
+    SELECT trim(payer_name) as payer_name, sum(transaction_amount) as amount
     FROM test.transactions
-    WHERE direction(trim(transaction_type)) > 0 AND transaction_amount > 0
+    WHERE transaction_amount > 0
     GROUP BY trim(payer_name)
     ORDER BY amount DESC;
 
 CREATE OR REPLACE VIEW test.goal AS
-    SELECT sum(tx.transaction_amount * direction(trim(tx.transaction_type))) as balance, 
+    SELECT sum(tx.transaction_amount ) as balance, 
         (select max(tg.target_amount) from test.target as tg) as target
     FROM test.transactions tx;
 
