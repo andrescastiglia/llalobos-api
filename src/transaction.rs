@@ -1,4 +1,7 @@
-use crate::pagination::{PaginatedResponse, Pagination};
+use crate::{
+    context::Context,
+    pagination::{PaginatedResponse, Pagination},
+};
 use axum::{
     extract::{Extension, Query},
     response::Json,
@@ -6,7 +9,6 @@ use axum::{
 use chrono::{DateTime, Utc};
 use rust_decimal::Decimal;
 use serde::{Deserialize, Serialize};
-use sqlx::PgPool;
 
 #[derive(Serialize, Deserialize)]
 pub struct Transaction {
@@ -17,15 +19,19 @@ pub struct Transaction {
     pub transaction_type: Option<String>,
 }
 
-async fn count(pool: &PgPool) -> Result<i64, sqlx::Error> {
+async fn count(context: &Context) -> Result<i64, sqlx::Error> {
     let count = sqlx::query_scalar!("SELECT COUNT(*) FROM transactions")
-        .fetch_one(pool)
+        .fetch_one(context.pool())
         .await?;
 
     Ok(count.unwrap_or_default())
 }
 
-async fn fetch(pool: &PgPool, page: u32, page_size: u32) -> Result<Vec<Transaction>, sqlx::Error> {
+async fn fetch(
+    context: &Context,
+    page: u32,
+    page_size: u32,
+) -> Result<Vec<Transaction>, sqlx::Error> {
     let offset = (page - 1) * page_size;
 
     let transactions = sqlx::query_as!(
@@ -40,21 +46,21 @@ async fn fetch(pool: &PgPool, page: u32, page_size: u32) -> Result<Vec<Transacti
         page_size as i64,
         offset as i64,
     )
-    .fetch_all(pool)
+    .fetch_all(context.pool())
     .await?;
 
     Ok(transactions)
 }
 
 pub async fn handler(
-    Extension(pool): Extension<sqlx::PgPool>,
+    Extension(context): Extension<Context>,
     Query(pagination): Query<Pagination>,
 ) -> Json<PaginatedResponse<Vec<Transaction>>> {
     let page = pagination.page.unwrap_or(1);
     let page_size = pagination.page_size.unwrap_or(10);
 
-    let transactions = fetch(&pool, page, page_size).await.unwrap_or_default();
-    let total = count(&pool).await.unwrap_or_default();
+    let total = count(&context).await.unwrap_or_default();
+    let transactions = fetch(&context, page, page_size).await.unwrap_or_default();
 
     Json(PaginatedResponse {
         data: transactions,

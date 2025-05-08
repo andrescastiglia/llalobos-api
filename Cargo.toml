@@ -5,11 +5,29 @@ edition = "2021"
 authors = ["Andres Castiglia <acastiglia@gmail.com>"]
 
 [dependencies]
-axum = { version = "~0.8", features = [] }
+anyhow = { version = "~1.0" }
+axum = { version = "~0.8" }
 chrono = { version = "~0.4", features = ["serde"] }
-dotenvy = { version = "~0.15", features = [] }
-rust_decimal = { version="1.36.0", features = ["db-tokio-postgres"] }
+dotenvy = { version = "~0.15" }
+reqwest = { version = "~0.12", features = ["json"] }
+rust_decimal = { version = "~1.37", features = ["db-tokio-postgres"] }
 serde = { version = "~1.0", features = ["derive"] }
-sqlx = { version = "~0.8", features = ["postgres", "runtime-tokio", "macros", "chrono", "rust_decimal" ] }
-tokio = { version = "~1.44", features = ["macros", "rt-multi-thread", "signal"] }
+serde_json = { version = "~1.0" }
+sqlx = { version = "~0.8", features = [
+    "postgres",
+    "runtime-tokio",
+    "macros",
+    "chrono",
+    "rust_decimal",
+] }
+tokio = { version = "~1.45", features = [
+    "macros",
+    "rt-multi-thread",
+    "signal",
+] }
 tracing-subscriber = { version = "~0.3", features = ["env-filter"] }
+yup-oauth2 = { version = "~12.1" }
+
+[profile.dev]
+debug = true
+opt-level = 0
