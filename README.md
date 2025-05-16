@@ -29,8 +29,14 @@ DATABASE_URL="${POSTGRES_URL}" cargo sqlx prepare --check -- --bin llalobos-api
 ```
 
 ### Calendar
+Principal
 ```
 curl -X GET "https://www.googleapis.com/calendar/v3/calendars/lalibertadavanzalobos.ar%40gmail.com/events?timeMin=2025-04-01T12:00:00Z&timeMax=2025-05-31T12:00:00Z&singleEvents=true&key=API_KEY"
+```
+
+Electoral
+```
+curl -X GET "https://www.googleapis.com/calendar/v3/calendars/6024b978a4778af358f1c977c503092b27474dcabcfe55e77397d97cd462c47c%40group.calendar.google.com/events?timeMin=2025-04-01T12:00:00Z&timeMax=2025-05-31T12:00:00Z&singleEvents=true&key=API_KEY"
 ```
 
 ### Test

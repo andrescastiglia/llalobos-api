@@ -8,6 +8,7 @@ authors = ["Andres Castiglia <acastiglia@gmail.com>"]
 anyhow = { version = "~1.0" }
 axum = { version = "~0.8" }
 chrono = { version = "~0.4", features = ["serde"] }
+chrono-tz = { version = "~0.10" }
 dotenvy = { version = "~0.15" }
 reqwest = { version = "~0.12", features = ["json"] }
 rust_decimal = { version = "~1.37", features = ["db-tokio-postgres"] }
